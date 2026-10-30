@@ -1,0 +1,37 @@
+{
+  "name": "r2-lens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A file explorer for Cloudflare R2 that runs on your own Worker, with Cloudflare sign-in, API tokens or bucket bindings.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "vite build",
+    "start": "node scripts/ensure-session-secret.mjs local && vite build && vite preview",
+    "deploy": "npm run build && wrangler deploy && node scripts/ensure-session-secret.mjs remote",
+    "typecheck": "wrangler types --strict-vars=false && tsc -b",
+    "cf-typegen": "wrangler types --strict-vars=false"
+  },
+  "dependencies": {
+    "@cloudflare/kumo": "^2.16.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "aws4fetch": "^1.0.20",
+    "cloudflare": "^7.3.0",
+    "hono": "^4.13.14",
+    "jose": "^6.2.13",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.65.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.5",
+    "wrangler": "^4.154.0"
+  }
+}

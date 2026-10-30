@@ -1,0 +1,57 @@
+@source "../node_modules/@cloudflare/kumo/dist/**/*.{js,jsx,ts,tsx}";
+@import "@cloudflare/kumo/styles";
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-kumo-canvas text-kumo-default antialiased;
+}
+
+:root:not([data-mode="dark"]) [role="checkbox"]:not([data-checked], [data-indeterminate]) {
+  --tw-ring-color: var(--color-neutral-400);
+}
+
+[role="checkbox"]:is([data-checked], [data-indeterminate]) {
+  background-color: var(--color-kumo-brand);
+  --tw-ring-color: var(--color-kumo-brand);
+}
+[role="checkbox"]:is([data-checked], [data-indeterminate]) > * {
+  color: white;
+}
+
+@keyframes r2-lens-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes r2-lens-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-[r2-lens-"] {
+    animation: none;
+  }
+}
+
+.r2-lens-setup-code .kumo-shiki {
+  --kumo-code-highlight-bg: color-mix(in srgb, var(--color-kumo-brand) 12%, transparent);
+}
+.r2-lens-setup-code div:has(> .kumo-shiki) {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+[role="region"][aria-label="Notifications"] [data-toast-title] {
+  @apply text-sm leading-5 font-medium;
+}
+[role="region"][aria-label="Notifications"] [data-toast-title] + * {
+  @apply text-[0.8125rem] leading-[1.125rem] text-kumo-subtle;
+}
